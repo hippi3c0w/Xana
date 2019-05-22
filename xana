@@ -1,0 +1,52 @@
+#!/bin/bash
+cat /home/hippi3c0w/tools/Xana/style
+echo " "
+echo " "
+echo "Made by: Manu Alén - @hippi3c0w"
+echo " "
+echo "An antimalware for GNU/Linux in commandline execution"
+echo " "
+#Color variables
+BLACK='\033[0;30m'
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
+PURPLE='\033[0;34m'
+CYAN='\033[0;35m'
+LIGHTGRAY='\033[0;36m'
+NC='\033[0m'
+DARKGRAY='\033[1;30m'
+LIGHTRED='\033[1;31m'
+LIGHTGREEN='\033[1;32m'
+LIGHTORANGE='\033[1;33m'
+LIGHTPURPLE='\033[1;34m'
+LIGHTCYAN='\033[1;35m'
+
+
+function usage()
+{
+	echo "--rule					You must specify the rules file."
+	echo "--file					You must specify the file to analyse"
+
+}
+
+if [[ $# -eq 4 ]];then
+	if [[ $1=="--rule" ]];then
+		if [[ $3=="--file" ]];then
+
+
+			yara=`yara -s -g -m -w $2 $4 > /home/hippi3c0w/tools/Xana/reglas/yara.txt`
+			analyse=`cat /home/hippi3c0w/tools/Xana/reglas/yara.txt |wc -l`
+				if [[ $analyse -gt 1 ]];then
+					notify-send -i /home/hippi3c0w/Descargas/packages/alert.ico "ALERT!" "It's malware. Go to /var/log/xana.log to see more info regarding this"
+					echo  "$4 has been detected as malware!! [$today]" > /var/log/xana.log
+
+					# echo -e "[${RED}!${NC}] ${RED}It's malware!! ${NC}"
+				else
+					echo -e "[${GREEN}+${NC}] No problem, it's safe...at the moment"
+				fi
+		fi #if file
+	fi #if rule 
+fi
+#yara -s -g -m -w
+

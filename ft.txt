@@ -1,0 +1,5 @@
+Meterpreter_rev_tcp [] [] /home/hippi3c0w/Descargas/testing.exe
+0x1163c:$metadatos: a\x00b\x00.\x00e\x00x\x00e\x00
+0x116f8:$metadatos: a\x00b\x00.\x00e\x00x\x00e\x00
+0xcf62:$dll1: KERNEL32.dll
+0xcfc4:$dll2: WS2_32.dll
